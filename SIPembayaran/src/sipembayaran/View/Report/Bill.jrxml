@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="275" pageHeight="400" columnWidth="265" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="20" uuid="88994430-ca0b-4e04-ac45-4c54d3a273ad">
+	<property name="ireport.zoom" value="2.1435888100000042"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/agungnotfound/Documents/My Project/SIPembayaran/src/sipembayaran/View/Report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idPenjualan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detail_penjualan.`jumlah` AS detail_penjualan_jumlah,
+     detail_penjualan.`total` AS detail_penjualan_total,
+     menu.`nama` AS menu_nama,
+     menu.`harga` AS menu_harga,
+     penjualan.`id_penjualan` AS penjualan_id_penjualan,
+     penjualan.`tanggal` AS penjualan_tanggal,
+     penjualan.`no_meja` AS penjualan_no_meja,
+     penjualan.`nama` AS penjualan_nama,
+     penjualan.`nama` AS penjualan_id_penjualan,
+     detail_penjualan.`nama` AS detail_penjualan_nama,
+     detail_penjualan.`harga` AS detail_penjualan_harga
+FROM
+     `menu` menu INNER JOIN `detail_penjualan` detail_penjualan ON menu.`id_menu` = detail_penjualan.`id_menu`
+     INNER JOIN `penjualan` penjualan ON detail_penjualan.`id_penjualan` = penjualan.`id_penjualan`
+WHERE 
+detail_penjualan.`id_penjualan`=$P{idPenjualan}]]>
+	</queryString>
+	<field name="detail_penjualan_jumlah" class="java.lang.Integer"/>
+	<field name="detail_penjualan_total" class="java.lang.Double"/>
+	<field name="menu_nama" class="java.lang.String"/>
+	<field name="menu_harga" class="java.lang.Double"/>
+	<field name="penjualan_id_penjualan" class="java.lang.String"/>
+	<field name="penjualan_tanggal" class="java.sql.Timestamp"/>
+	<field name="penjualan_no_meja" class="java.lang.Integer"/>
+	<field name="penjualan_nama" class="java.lang.String"/>
+	<field name="detail_penjualan_nama" class="java.lang.String"/>
+	<field name="detail_penjualan_harga" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="47" width="92" height="10" uuid="138d4e9f-96eb-4f2b-a4a3-5299b54e86e8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penjualan_tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="33" width="68" height="9" uuid="cb869767-2516-4957-abc6-70b989a56749"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penjualan_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="47" width="43" height="10" uuid="2c20a315-a7fd-453b-99d0-0263fc089e93"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penjualan_no_meja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="33" width="92" height="9" uuid="45648d55-f01e-47c2-93bf-2b5a2e820cdf"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penjualan_id_penjualan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="33" width="31" height="9" uuid="35729252-52cd-49b3-b650-ff4c5377a648"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[No. Trans]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="31" height="9" uuid="6bccd4a4-d36e-433c-91d9-e940c6305b60"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="33" width="31" height="9" uuid="42823505-d838-442a-90d2-cdac8fddbc80"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Atas Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="47" width="31" height="10" uuid="5c162383-aac3-4857-9c23-ef9b11ac82d1"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[No. Meja]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="146" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="3" width="263" height="20" uuid="3c250a09-cdfa-4c75-8cac-5b46fed0074f"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Bill_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="76" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch"/>
+	</summary>
+</jasperReport>

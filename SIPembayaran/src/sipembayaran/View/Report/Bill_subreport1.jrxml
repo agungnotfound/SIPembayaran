@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bill_subreport1" language="groovy" pageWidth="250" pageHeight="300" columnWidth="250" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2d7fcb90-a17f-4a33-af95-c6a0488724f9">
+	<property name="ireport.zoom" value="3.4522712143931087"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idPenjualan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detail_penjualan.`nama` AS detail_penjualan_nama,
+     detail_penjualan.`harga` AS detail_penjualan_harga,
+     detail_penjualan.`jumlah` AS detail_penjualan_jumlah,
+     detail_penjualan.`total` AS detail_penjualan_total
+FROM
+     `detail_penjualan` detail_penjualan
+WHERE 
+detail_penjualan.`id_penjualan`=$P{idPenjualan}]]>
+	</queryString>
+	<field name="detail_penjualan_nama" class="java.lang.String"/>
+	<field name="detail_penjualan_harga" class="java.lang.Double"/>
+	<field name="detail_penjualan_jumlah" class="java.lang.Integer"/>
+	<field name="detail_penjualan_total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="4" width="63" height="8" uuid="ae68df52-d5b5-4524-bb31-6e20d8a87fe9"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_penjualan_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="103" y="4" width="47" height="8" uuid="3f7ced17-d705-497b-a01d-015843048e89"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_penjualan_harga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="4" width="27" height="8" uuid="cb20a6fc-0e00-41c6-8ff3-6363d798a24c"/>
+				<textFieldExpression><![CDATA[$F{detail_penjualan_jumlah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="4" width="46" height="8" uuid="b244de7a-9137-4b8e-88dc-0a44881cb676"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_penjualan_total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="6" y="4" width="16" height="8" uuid="a772c486-ed7f-4f73-a4cb-9195ee8dc2ae"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>
