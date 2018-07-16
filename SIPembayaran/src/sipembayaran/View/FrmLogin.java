@@ -158,6 +158,12 @@ public class FrmLogin extends javax.swing.JFrame {
         }
         
         User user = userCtrl.findUser(txtUser.getText());
+        
+        if (user.getStatus().equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "User Non Aktif, Silahkan Hubungi Administrator!");
+            return;
+        }
+        
         if(user == null){
             JOptionPane.showMessageDialog(null, "Username Tidak Ada");
         }else{

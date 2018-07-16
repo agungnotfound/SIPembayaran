@@ -3,12 +3,12 @@
   <persistence-unit name="SIPembayaranPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>sipembayaran.Model.Pembelian</class>
-    <class>sipembayaran.Model.User</class>
     <class>sipembayaran.Model.DetailPembelian</class>
     <class>sipembayaran.Model.Penjualan</class>
     <class>sipembayaran.Model.Supplier</class>
     <class>sipembayaran.Model.Menu</class>
     <class>sipembayaran.Model.DetailPenjualan</class>
+    <class>sipembayaran.Model.User</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/penjualan_db?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

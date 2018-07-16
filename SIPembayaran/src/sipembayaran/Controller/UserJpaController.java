@@ -19,7 +19,7 @@ import sipembayaran.Model.User;
 
 /**
  *
- * @author YAS
+ * @author agungnotfound
  */
 public class UserJpaController implements Serializable {
 

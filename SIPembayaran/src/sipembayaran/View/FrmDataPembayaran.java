@@ -57,10 +57,17 @@ public class FrmDataPembayaran extends javax.swing.JInternalFrame {
         SIPembayaranPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("SIPembayaranPU").createEntityManager();
         penjualanQuery = java.beans.Beans.isDesignTime() ? null : SIPembayaranPUEntityManager.createQuery("SELECT p FROM Penjualan p");
         penjualanList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(penjualanQuery.getResultList());
+        btnEdit = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBayar = new javax.swing.JTable();
-        btnNew = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         setClosable(true);
 
@@ -91,42 +98,28 @@ public class FrmDataPembayaran extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblBayar);
 
-        btnNew.setText("New");
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
-            }
-        });
-
-        btnEdit.setText("Edit");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel1.setText("DATA PENJUALAN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNew)
-                    .addComponent(btnEdit))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
@@ -135,31 +128,6 @@ public class FrmDataPembayaran extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-
-        FrmPembayaran frmbayar = new FrmPembayaran();
-        this.getParent().add(frmbayar);
-        frmbayar.setVisible(true);
-    }//GEN-LAST:event_btnNewActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int row = tblBayar.getSelectedRow();
-        if (row == -1) { //jika row tidak dipilih
-            JOptionPane.showMessageDialog(null, "Pilih Data!");
-            return;
-        }
-        
-        String nomor = tblBayar.getValueAt(row, 0).toString();
-        
-        pjl = pjlCtrl.findPenjualan(nomor);
-        if (pjl != null) {
-            FrmPembayaran bayar = new FrmPembayaran(pjl, dpjl, this);
-            this.getParent().add(bayar);
-            bayar.setVisible(true);
-        }
-        
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void tblBayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblBayarKeyReleased
         //        tableFilter(txtFilter.getText());
@@ -173,11 +141,29 @@ public class FrmDataPembayaran extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tblBayarMouseClicked
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int row = tblBayar.getSelectedRow();
+        if (row == -1) { //jika row tidak dipilih
+            JOptionPane.showMessageDialog(null, "Pilih Data!");
+            return;
+        }
+
+        String nomor = tblBayar.getValueAt(row, 0).toString();
+
+        pjl = pjlCtrl.findPenjualan(nomor);
+        if (pjl != null) {
+            FrmPembayaran bayar = new FrmPembayaran(pjl, dpjl, this);
+            this.getParent().add(bayar);
+            bayar.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnEditActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager SIPembayaranPUEntityManager;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnNew;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private java.util.List<sipembayaran.Model.Penjualan> penjualanList;
     private javax.persistence.Query penjualanQuery;
