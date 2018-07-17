@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author YAS
+ * @author agungnotfound
  */
 @Entity
 @Table(name = "penjualan")
@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Penjualan.findByIdPenjualan", query = "SELECT p FROM Penjualan p WHERE p.idPenjualan = :idPenjualan")
     , @NamedQuery(name = "Penjualan.findByTanggal", query = "SELECT p FROM Penjualan p WHERE p.tanggal = :tanggal")
     , @NamedQuery(name = "Penjualan.findByNoMeja", query = "SELECT p FROM Penjualan p WHERE p.noMeja = :noMeja")
-    , @NamedQuery(name = "Penjualan.findByNama", query = "SELECT p FROM Penjualan p WHERE p.nama = :nama")})
+    , @NamedQuery(name = "Penjualan.findByNama", query = "SELECT p FROM Penjualan p WHERE p.nama = :nama")
+    , @NamedQuery(name = "Penjualan.findByNilaiFaktur", query = "SELECT p FROM Penjualan p WHERE p.nilaiFaktur = :nilaiFaktur")})
 public class Penjualan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,13 +42,18 @@ public class Penjualan implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_penjualan")
     private String idPenjualan;
+    @Basic(optional = false)
     @Column(name = "tanggal")
     @Temporal(TemporalType.TIMESTAMP)
     private Date tanggal;
     @Column(name = "no_meja")
     private Integer noMeja;
+    @Basic(optional = false)
     @Column(name = "nama")
     private String nama;
+    @Basic(optional = false)
+    @Column(name = "nilai_faktur")
+    private double nilaiFaktur;
     @OneToMany(mappedBy = "idPenjualan")
     private List<DetailPenjualan> detailPenjualanList;
 
@@ -56,6 +62,13 @@ public class Penjualan implements Serializable {
 
     public Penjualan(String idPenjualan) {
         this.idPenjualan = idPenjualan;
+    }
+
+    public Penjualan(String idPenjualan, Date tanggal, String nama, double nilaiFaktur) {
+        this.idPenjualan = idPenjualan;
+        this.tanggal = tanggal;
+        this.nama = nama;
+        this.nilaiFaktur = nilaiFaktur;
     }
 
     public String getIdPenjualan() {
@@ -88,6 +101,14 @@ public class Penjualan implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public double getNilaiFaktur() {
+        return nilaiFaktur;
+    }
+
+    public void setNilaiFaktur(double nilaiFaktur) {
+        this.nilaiFaktur = nilaiFaktur;
     }
 
     @XmlTransient

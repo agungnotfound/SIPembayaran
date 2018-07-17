@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -52,14 +54,19 @@ public class FrmPembayaran extends javax.swing.JInternalFrame {
     PenjualanJpaController pjlCtrl = new PenjualanJpaController(EMF);
     DetailPenjualanJpaController dtCtrl = new DetailPenjualanJpaController(EMF);
 
-    DefaultTableModel model;
-
     /**
      * Creates new form FrmPembayaran
      */
     public FrmPembayaran() {
         initComponents();
         nofaktur();
+
+//        model = new DefaultTableModel();
+//        model.addColumn("ID Menu");
+//        model.addColumn("Keterangan");
+//        model.addColumn("Harga");
+//        model.addColumn("Jumlah");
+//        model.addColumn("Sub Total");
     }
 
     public FrmPembayaran(FrmDataPembayaran fDataBayar) {
@@ -309,6 +316,7 @@ public class FrmPembayaran extends javax.swing.JInternalFrame {
             pjl.setNoMeja(Integer.parseInt(txtNoMeja.getText()));
             Date date = new Date();
             pjl.setTanggal(date);
+            pjl.setNilaiFaktur(Double.parseDouble(lblTotal.getText()));
 
             if (isNew) {
                 try {
@@ -480,23 +488,8 @@ public class FrmPembayaran extends javax.swing.JInternalFrame {
             txtNoTrans.setText(pjl.getIdPenjualan());
             txtNama.setText(pjl.getNama());
             txtNoMeja.setText(pjl.getNoMeja().toString());
-            lblTotal.setText("test");
+            lblTotal.setText(String.valueOf(pjl.getNilaiFaktur()));
             cmbMenu.setVisible(false);
-            
-//            int i = 0;
-//                Object[] rowData ={"Kode Menu","Menu","Harga","Jumlah","Subtotal"};
-//                int j = tblDetail.getModel().getRowCount();
-//                
-//                if(j>0){
-//                    for (int k = j-1; k >= 0; k--) {
-//                       ( (DefaultTableModel)tblDetail.getModel()).removeRow(k);
-//                    }
-//                }
-            try {
-                ps = con.prepareStatement("SELECT * FROM detail_penjualan WHERE id_penjualan = ?");
-            } catch (Exception e) {
-            }
-            
             
 
         }
@@ -520,7 +513,7 @@ public class FrmPembayaran extends javax.swing.JInternalFrame {
 
         } catch (Exception e) {
         }
-        lblTotal.setText(customformat("###,###", grandtotal));
+        lblTotal.setText(customformat("Rp.###,###", grandtotal));
 
         //koding hitung dalam table
     }
@@ -538,7 +531,6 @@ public class FrmPembayaran extends javax.swing.JInternalFrame {
 //            System.err.println("koneksi gagal" + e.getMessage());
         }
     }
-
 
     private void nofaktur() {
         koneksi();

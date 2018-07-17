@@ -21,7 +21,7 @@ import sipembayaran.Model.Penjualan;
 
 /**
  *
- * @author YAS
+ * @author agungnotfound
  */
 public class PenjualanJpaController implements Serializable {
 

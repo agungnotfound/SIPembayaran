@@ -21,7 +21,7 @@ import sipembayaran.Model.Menu;
 
 /**
  *
- * @author YAS
+ * @author agungnotfound
  */
 public class MenuJpaController implements Serializable {
 

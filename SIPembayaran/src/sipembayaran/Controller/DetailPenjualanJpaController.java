@@ -20,7 +20,7 @@ import sipembayaran.Model.Menu;
 
 /**
  *
- * @author YAS
+ * @author agungnotfound
  */
 public class DetailPenjualanJpaController implements Serializable {
 
