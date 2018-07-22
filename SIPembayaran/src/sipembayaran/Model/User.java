@@ -5,8 +5,6 @@
  */
 package sipembayaran.Model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,12 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author agungnotfound
+ * @author YAS
  */
 @Entity
 @Table(name = "user")
@@ -33,16 +30,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "User.findByStatus", query = "SELECT u FROM User u WHERE u.status = :status")})
 public class User implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
+    @Basic(optional = false)
     @Column(name = "password")
     private String password;
+    @Basic(optional = false)
     @Column(name = "level")
     private String level;
     @Basic(optional = false)
@@ -56,8 +52,10 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public User(String username, String status) {
+    public User(String username, String password, String level, String status) {
         this.username = username;
+        this.password = password;
+        this.level = level;
         this.status = status;
     }
 
@@ -66,9 +64,7 @@ public class User implements Serializable {
     }
 
     public void setUsername(String username) {
-        String oldUsername = this.username;
         this.username = username;
-        changeSupport.firePropertyChange("username", oldUsername, username);
     }
 
     public String getPassword() {
@@ -76,9 +72,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        String oldPassword = this.password;
         this.password = password;
-        changeSupport.firePropertyChange("password", oldPassword, password);
     }
 
     public String getLevel() {
@@ -86,9 +80,7 @@ public class User implements Serializable {
     }
 
     public void setLevel(String level) {
-        String oldLevel = this.level;
         this.level = level;
-        changeSupport.firePropertyChange("level", oldLevel, level);
     }
 
     public String getStatus() {
@@ -96,9 +88,7 @@ public class User implements Serializable {
     }
 
     public void setStatus(String status) {
-        String oldStatus = this.status;
         this.status = status;
-        changeSupport.firePropertyChange("status", oldStatus, status);
     }
 
     @Override
@@ -124,14 +114,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "sipembayaran.Model.User[ username=" + username + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

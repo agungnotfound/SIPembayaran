@@ -5,8 +5,6 @@
  */
 package sipembayaran.Model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -37,9 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pembelian.findByTanggal", query = "SELECT p FROM Pembelian p WHERE p.tanggal = :tanggal")
     , @NamedQuery(name = "Pembelian.findBySupplier", query = "SELECT p FROM Pembelian p WHERE p.supplier = :supplier")})
 public class Pembelian implements Serializable {
-
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,9 +60,7 @@ public class Pembelian implements Serializable {
     }
 
     public void setIdPembelian(String idPembelian) {
-        String oldIdPembelian = this.idPembelian;
         this.idPembelian = idPembelian;
-        changeSupport.firePropertyChange("idPembelian", oldIdPembelian, idPembelian);
     }
 
     public Date getTanggal() {
@@ -76,9 +68,7 @@ public class Pembelian implements Serializable {
     }
 
     public void setTanggal(Date tanggal) {
-        Date oldTanggal = this.tanggal;
         this.tanggal = tanggal;
-        changeSupport.firePropertyChange("tanggal", oldTanggal, tanggal);
     }
 
     public String getSupplier() {
@@ -86,9 +76,7 @@ public class Pembelian implements Serializable {
     }
 
     public void setSupplier(String supplier) {
-        String oldSupplier = this.supplier;
         this.supplier = supplier;
-        changeSupport.firePropertyChange("supplier", oldSupplier, supplier);
     }
 
     @XmlTransient
@@ -123,14 +111,6 @@ public class Pembelian implements Serializable {
     @Override
     public String toString() {
         return "sipembayaran.Model.Pembelian[ idPembelian=" + idPembelian + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

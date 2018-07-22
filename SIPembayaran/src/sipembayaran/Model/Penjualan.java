@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author agungnotfound
+ * @author YAS
  */
 @Entity
 @Table(name = "penjualan")
@@ -44,7 +44,7 @@ public class Penjualan implements Serializable {
     private String idPenjualan;
     @Basic(optional = false)
     @Column(name = "tanggal")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date tanggal;
     @Column(name = "no_meja")
     private Integer noMeja;

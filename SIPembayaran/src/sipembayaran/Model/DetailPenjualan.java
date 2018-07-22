@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author agungnotfound
+ * @author YAS
  */
 @Entity
 @Table(name = "detail_penjualan")

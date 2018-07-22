@@ -3,12 +3,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="dateFrom" class="java.util.Date">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="dateTo" class="java.util.Date">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
+	<parameter name="tanggal" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      penjualan.`id_penjualan` AS penjualan_id_penjualan,
@@ -20,14 +15,15 @@
 FROM
      `penjualan` penjualan
 WHERE 
-    tanggal BETWEEN $P{dateFrom} AND $P{dateTo}]]>
+     penjualan.`tanggal`=$P{tanggal}]]>
 	</queryString>
 	<field name="penjualan_id_penjualan" class="java.lang.String"/>
-	<field name="penjualan_tanggal" class="java.sql.Timestamp"/>
+	<field name="penjualan_tanggal" class="java.sql.Date"/>
 	<field name="penjualan_no_meja" class="java.lang.Integer"/>
 	<field name="penjualan_nama" class="java.lang.String"/>
 	<field name="penjualan_nilai_faktur" class="java.lang.Double"/>
 	<field name="bulan" class="java.lang.String"/>
+	<field name="tanggal" class="java.lang.String"/>
 	<variable name="Grand Total" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{penjualan_nilai_faktur}]]></variableExpression>
 	</variable>
@@ -39,25 +35,21 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="71" splitType="Stretch">
 			<staticText>
-				<reportElement x="178" y="9" width="229" height="29" uuid="70782c24-0805-40b5-919e-51dc69c6be39"/>
+				<reportElement x="127" y="16" width="286" height="29" uuid="70782c24-0805-40b5-919e-51dc69c6be39"/>
 				<textElement>
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LAPORAN PENJUALAN]]></text>
+				<text><![CDATA[LAPORAN PENJUALAN HARIAN]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
-			<textField pattern="dd MMMMM yyyy">
-				<reportElement x="78" y="15" width="100" height="20" uuid="7485c1d7-b236-4000-ab3c-94282b6d2cd9"/>
-				<textFieldExpression><![CDATA[$P{dateFrom}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd MMMMM yyyy">
-				<reportElement x="432" y="11" width="100" height="20" uuid="eec6bdc3-b934-473d-aa0d-7b6bf65d8826"/>
-				<textFieldExpression><![CDATA[$P{dateTo}]]></textFieldExpression>
+			<textField>
+				<reportElement x="89" y="15" width="100" height="20" uuid="48eb321f-aaa0-450f-8334-1ffb6549f1b9"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -98,13 +90,8 @@ WHERE
 	<pageFooter>
 		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="14" width="80" height="20" uuid="59d99065-c8ef-4a78-a4f8-dbf3d4eb63c4"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="93" y="14" width="40" height="20" uuid="cb9fdde9-b088-4ac9-897c-655548f5dbbf"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<reportElement x="27" y="15" width="100" height="20" uuid="75708bc1-c7d4-4e0c-800e-df920a72c290"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

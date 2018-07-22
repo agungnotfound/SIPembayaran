@@ -34,6 +34,7 @@ public class Home extends javax.swing.JFrame {
                     break;
                 case "cashier":
                     miUser.setVisible(false);
+                    menuReport.setVisible(false);
                     break;
             }
         }
@@ -51,23 +52,19 @@ public class Home extends javax.swing.JFrame {
         dekstopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         miBahanBaku = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         miMenu = new javax.swing.JMenuItem();
         miUser = new javax.swing.JMenuItem();
         miExit = new javax.swing.JMenuItem();
         muPenjualan = new javax.swing.JMenu();
         miPembelian = new javax.swing.JMenuItem();
         miPenjualan = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        menuReport = new javax.swing.JMenu();
         miRSales = new javax.swing.JMenuItem();
         miRPurchase = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         miBahanBaku.setText("Master");
-
-        jMenuItem5.setText("Data Bahan Baku");
-        miBahanBaku.add(jMenuItem5);
 
         miMenu.setText("Data Menu");
         miMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +112,7 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1.add(muPenjualan);
 
-        jMenu5.setText("Laporan");
+        menuReport.setText("Laporan");
 
         miRSales.setText("Sales Report");
         miRSales.addActionListener(new java.awt.event.ActionListener() {
@@ -123,12 +120,12 @@ public class Home extends javax.swing.JFrame {
                 miRSalesActionPerformed(evt);
             }
         });
-        jMenu5.add(miRSales);
+        menuReport.add(miRSales);
 
         miRPurchase.setText("Purchase Report ");
-        jMenu5.add(miRPurchase);
+        menuReport.add(miRPurchase);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(menuReport);
 
         setJMenuBar(jMenuBar1);
 
@@ -147,26 +144,6 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_miExitActionPerformed
-
-    private void miUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUserActionPerformed
-        if (Fuser == null) {
-            Fuser = new FrmUser();
-        }
-        showForm(Fuser);
-        makeCenter(Fuser);
-    }//GEN-LAST:event_miUserActionPerformed
-
-    private void miMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMenuActionPerformed
-        if (Fmenu == null) {
-            Fmenu = new FrmMenu();
-        }
-        showForm(Fmenu);
-        makeCenter(Fmenu);
-    }//GEN-LAST:event_miMenuActionPerformed
 
     private void miPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPenjualanActionPerformed
         if (fbayar == null) {
@@ -191,6 +168,26 @@ public class Home extends javax.swing.JFrame {
         showForm(bayar);
         makeCenter(bayar);
     }//GEN-LAST:event_miRSalesActionPerformed
+
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_miExitActionPerformed
+
+    private void miUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUserActionPerformed
+        if (Fuser == null) {
+            Fuser = new FrmUser();
+        }
+        showForm(Fuser);
+        makeCenter(Fuser);
+    }//GEN-LAST:event_miUserActionPerformed
+
+    private void miMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMenuActionPerformed
+        if (Fmenu == null) {
+            Fmenu = new FrmMenu();
+        }
+        showForm(Fmenu);
+        makeCenter(Fmenu);
+    }//GEN-LAST:event_miMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,9 +226,8 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dekstopPane;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu menuReport;
     private javax.swing.JMenu miBahanBaku;
     private javax.swing.JMenuItem miExit;
     private javax.swing.JMenuItem miMenu;

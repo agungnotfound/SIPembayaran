@@ -19,7 +19,8 @@ public class FrmMenu extends javax.swing.JInternalFrame {
      */
     public FrmMenu() {
         initComponents();
-        
+        refresh();
+        reset();
     }
 
     /**

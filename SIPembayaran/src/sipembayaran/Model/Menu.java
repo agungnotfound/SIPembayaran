@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author agungnotfound
+ * @author YAS
  */
 @Entity
 @Table(name = "menu")

@@ -33,15 +33,13 @@ public class FrmReport extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        cmbMonth = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         splPenjualan = new javax.swing.JScrollPane();
+        txtTanggal = new javax.swing.JTextField();
 
         setClosable(true);
 
-        jLabel2.setText("Month");
-
-        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Mont --", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        jLabel2.setText("Tanggal");
 
         jButton1.setText("Preview");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -57,11 +55,11 @@ public class FrmReport extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(31, 31, 31)
+                .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(jButton1)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
             .addComponent(splPenjualan)
         );
         layout.setVerticalGroup(
@@ -70,10 +68,10 @@ public class FrmReport extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(splPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                .addComponent(splPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,7 +86,7 @@ public class FrmReport extends javax.swing.JInternalFrame {
             File file = new File("");
             String sourcefilename = file.getAbsolutePath() + "\\src\\sipembayaran\\View\\Report\\ReportPenjualan.jasper";
             HashMap parameter = new HashMap();
-            parameter.put("month", cmbMonth.getSelectedItem().toString());
+            parameter.put("tanggal", txtTanggal.getText());
             
             JasperPrint jp = JasperFillManager.fillReport(sourcefilename, parameter, connect);
 //            //untuk buka report
@@ -118,9 +116,9 @@ public class FrmReport extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbMonth;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane splPenjualan;
+    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }
